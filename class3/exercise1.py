@@ -1,6 +1,5 @@
 #/usr/bin/env python
 
-import time
 from snmp_helper import snmp_extract,snmp_get_oid_v3
 import email_helper
 import time
