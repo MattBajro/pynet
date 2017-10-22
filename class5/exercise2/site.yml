@@ -1,0 +1,6 @@
+---
+- name: Generate configuration files-site.yml
+  hosts: local
+  roles:
+    - access_switch
+...
