@@ -1,0 +1,43 @@
+---
+  switches:
+    - {hostname: 'Switch1',
+      secret: 'cisco',
+      access_vlan: '10',
+      ip_addr: '1.1.1.10',
+      default_gateway: '1.1.1.1',
+      snmp_community: 'readSNMP',
+      SNMPv3: True,
+      }
+    - {hostname: 'Switch2',
+      secret: 'cisco',
+      access_vlan: '20',
+      ip_addr: '1.1.2.10',
+      default_gateway: '1.1.2.1',
+      snmp_community: 'readSNMP',
+      SNMPv3: True,
+      }
+    - {hostname: 'Switch3',
+      secret: 'cisco',
+      access_vlan: '10',
+      ip_addr: '1.1.3.10',
+      default_gateway: '1.1.3.1',
+      snmp_community: 'readSNMP',
+      SNMPv3: True,
+      }
+    - {hostname: 'Switch4',
+      secret: 'cisco',
+      access_vlan: '10',
+      ip_addr: '1.1.4.10',
+      default_gateway: '1.1.4.1',
+      snmp_community: 'readSNMP',
+      SNMPv3: False,
+      }
+    - {hostname: 'Switch5',
+      secret: 'cisco',
+      access_vlan: '10',
+      ip_addr: '1.1.5.10',
+      default_gateway: '1.1.5.1',
+      snmp_community: 'readSNMP',
+      SNMPv3: False,
+      }
+...
