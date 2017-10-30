@@ -2,6 +2,7 @@
 
 import pexpect
 from getpass import getpass
+import re
 
 def main():
 
@@ -15,27 +16,28 @@ def main():
     ssh_conn.expect('ssword:')
     ssh_conn.sendline(password)
 
-    ssh_conn.expect('#')
-    phostname = ssh_conn.before.strip()
+    ssh_conn.expect(r'#')
+    phostname = re.escape(ssh_conn.before.strip())
     #print phostname
+    cfg = re.escape('(config)#')
 
     ssh_conn.sendline('configure terminal')
-    ssh_conn.expect(phostname + '\(config\)#')
+    ssh_conn.expect(phostname + cfg)
     print ssh_conn.before
     print ssh_conn.after
 
     ssh_conn.sendline('logging buffered 33008')
-    ssh_conn.expect(phostname + '\(config\)#')
+    ssh_conn.expect(phostname + cfg)
     print ssh_conn.before
     print ssh_conn.after
 
     ssh_conn.sendline('end')
-    ssh_conn.expect(phostname + '#')
+    ssh_conn.expect(phostname + r'#')
     print ssh_conn.before
     print ssh_conn.after
 
     ssh_conn.sendline('show run | include logging buffered')
-    ssh_conn.expect(phostname + '#')
+    ssh_conn.expect(phostname + r'#')
     print ssh_conn.before
     print ssh_conn.after
 
