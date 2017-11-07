@@ -1,0 +1,27 @@
+---
+# vim:ft=ansible:
+- name: Reconfigure Arista interfaces
+  hosts: arista
+
+  tasks:
+    - name: Reconfigure Eth4 description on pynet-sw1
+      eos_interface:
+        name: Ethernet4
+        description: "*** IN USE ***"
+        username: "{{ eapi_username }}"
+        password: "{{ eapi_password }}"
+        host: "{{ eapi_hostname }}"
+        port: "{{ eapi_port }}"
+        transport: https
+
+    - name: Set Eth4 to access VLAN221 on pynet-sw1 
+      eos_switchport:
+        name: Ethernet4
+        mode: access
+        access_vlan: 221
+        username: "{{ eapi_username }}"
+        password: "{{ eapi_password }}"
+        host: "{{ eapi_hostname }}"
+        port: "{{ eapi_port }}"
+        transport: https
+...

@@ -1,0 +1,36 @@
+---
+# vim:ft=ansible:
+- name: Create 3 VLANs
+  hosts: arista
+
+  tasks:
+    - name: Create 1st VLAN
+      eos_vlan:
+        name: BIM-VL1
+        vlanid: 111
+        username: "{{ eapi_username }}"
+        password: "{{ eapi_password }}"
+        host: "{{ eapi_hostname }}"
+        port: "{{ eapi_port }}"
+        transport: https
+
+    - name: Create 2nd VLAN
+      eos_vlan:
+        name: BIM-VL2
+        vlanid: 221
+        username: "{{ eapi_username }}"
+        password: "{{ eapi_password }}"
+        host: "{{ eapi_hostname }}"
+        port: "{{ eapi_port }}"
+        transport: https
+
+    - name: Create 3rd VLAN
+      eos_vlan:
+        name: BIM-VL3
+        vlanid: 313
+        username: "{{ eapi_username }}"
+        password: "{{ eapi_password }}"
+        host: "{{ eapi_hostname }}"
+        port: "{{ eapi_port }}"
+        transport: https
+...

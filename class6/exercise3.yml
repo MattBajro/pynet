@@ -1,0 +1,18 @@
+---
+# vim:ft=ansible:
+- name: Reconfigure Arista interfaces - trunking
+  hosts: arista
+
+  tasks:
+    - name: Reconfigure Eth4 as TRUNK on pynet-sw1
+      eos_switchport:
+        name: Ethernet4
+        mode: trunk
+        trunk_native_vlan: 1
+        trunk_allowed_vlans: 111,221,313
+        username: "{{ eapi_username }}"
+        password: "{{ eapi_password }}"
+        host: "{{ eapi_hostname }}"
+        port: "{{ eapi_port }}"
+        transport: https
+...

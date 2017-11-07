@@ -1,0 +1,17 @@
+---
+# vim:ft=ansible:
+- name: Transfer file to Cisco routers
+  hosts: cisco
+
+  tasks:
+    - name: Transfer small file to pynet-rtr1
+      cisco_file_transfer:
+        source_file: /home/mbiro/pynet/class6/small_file_bim.txt
+        dest_file: small_file_bim.txt
+        overwrite: "true"
+        enable_scp: "true"
+        host: "{{ host }}"
+        port: "{{ port }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+...

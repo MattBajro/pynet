@@ -1,0 +1,44 @@
+---
+# vim:ft=ansible:
+- name: Clean-up Arista interfaces config
+  hosts: arista
+
+  tasks:
+    - name: Clean-up Eth4 description on pynet-sw1
+      eos_interface:
+        name: Ethernet4
+        description: "" 
+        username: "{{ eapi_username }}"
+        password: "{{ eapi_password }}"
+        host: "{{ eapi_hostname }}"
+        port: "{{ eapi_port }}"
+        transport: https
+
+    - name: Clean-up Eth4 switchport config on pynet-sw1 
+      eos_switchport:
+        name: Ethernet4
+        mode: access
+        access_vlan: 1
+        trunk_allowed_vlans: 1-4094
+        trunk_native_vlan: 1
+        username: "{{ eapi_username }}"
+        password: "{{ eapi_password }}"
+        host: "{{ eapi_hostname }}"
+        port: "{{ eapi_port }}"
+        transport: https
+
+    - name: Clean-up 3 VLANS on pynet-sw1
+      eos_vlan:
+        name: "{{ item.name }}"
+        vlanid: "{{ item.vlanid }}"
+        state: absent
+        username: "{{ eapi_username }}"
+        password: "{{ eapi_password }}"
+        host: "{{ eapi_hostname }}"
+        port: "{{ eapi_port }}"
+        transport: https
+      with_items:
+        - {name: BIM-VL1, vlanid: 111}
+        - {name: BIM-VL2, vlanid: 221}
+        - {name: BIM-VL3, vlanid: 313}
+...
